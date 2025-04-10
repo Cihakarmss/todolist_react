@@ -51,3 +51,27 @@ li{
   border-radius: 8px;
   
 }
+li:hover{
+  background-color: #0e0d0d;
+}
+.openThelist{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+
+.openThelist::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1em;
+  height: 1em;
+  border-left: solid 1px #ccc;
+}
+.openThelist:hover{
+  background-color: #0e0d0d;
+}
