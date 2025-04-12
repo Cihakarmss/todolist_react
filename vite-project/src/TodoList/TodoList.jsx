@@ -5,10 +5,8 @@ function Todolist() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [todo, setTodo] = useState("");
 
-  function openModal() {
-    setIsModalOpen(true);
-  }
   function closeModal() {
     setIsModalOpen(false);
   }
@@ -39,16 +37,23 @@ function Todolist() {
       <ul>
         {todos.length === 0 && <li>No todos available</li>}
 
-        {todos.map((todo, index) => (
-          <li key={9999 + index}>
+        {todos.map((todo, id) => (
+          <li key={ id}>
             <input type="checkbox" />
             {todo}
-            <button onClick={() => handleDeleteTodo(index)}>Delete</button>
-            <button onClick={openModal}>wiew</button>
+            <button onClick={() => handleDeleteTodo(id)}>Delete</button>
+            <button
+              onClick={() => {
+                setTodo(todo);
+                setIsModalOpen(true);
+              }}
+            >
+              wiew
+            </button>
           </li>
         ))}
       </ul>
-      {isModalOpen && <Modal todo={inputValue} closeModal={closeModal} />}
+      {isModalOpen && <Modal todo={todo} closeModal={closeModal} OnDelete={handleDeleteTodo}/>}
     </div>
   );
 }
